@@ -5,11 +5,13 @@ import { FooterComponent } from './footer/footer.component';
 import { FakelogoComponent } from './fakelogo/fakelogo.component';
 import { CourseListComponent } from './course-list/course-list.component';
 
+import { CourseListItemComponent } from './course-list-item/course-list-item.component';
+
 @NgModule({
   imports: [
     CommonModule
   ],
-  exports:[HeaderComponent],
-  declarations: [HeaderComponent, FooterComponent, FakelogoComponent, CourseListComponent]
+  exports:[HeaderComponent,FooterComponent,CourseListComponent,CourseListItemComponent],
+  declarations: [HeaderComponent, FooterComponent, FakelogoComponent, CourseListComponent, CourseListItemComponent]
 })
 export class CoreModule { }
