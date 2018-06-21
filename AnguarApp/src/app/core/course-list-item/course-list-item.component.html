@@ -1,14 +1,26 @@
-<div class="alert alert-primary">
-<div class="row">
-  <div class="col-10">
-  {{course.Name}}
+<div class="alert alert-primary container">
+  <div class="row">
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          {{course.Title}}
+        </div>
+        <div class="col">
+          {{course.DurationTime}} h
+        </div>
+        <div class="col-5">
+          {{course.CreationTime}}
+        </div>
+      </div>
+      <div>
+        {{course.Description}}
+      </div>
+    </div>
+    <div class="col-2">
+      <!--  <div class="btn-group" role="group"> </div>-->
+      <button type="button" item-width="100" class="btn btn-success btn-block" (click)="Edit()">Edit</button>
+      <button type="button" item-width="100" class="btn btn-danger btn-block" (click)="Delete()">Delete</button>
 
-  </div>
-  <div class="col-2">
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-success">Open</button>
-      <button type="button" class="btn btn-danger">Delete</button>    
     </div>
   </div>
-</div>
 </div>

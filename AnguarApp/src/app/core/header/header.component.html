@@ -1,11 +1,10 @@
 
 
 
-<div class="flex-container">
-  <div class="flex-container"style="justify-content: flex-start">
-    <div>
-      Logo
-      <img width="300" alt="Angular Logo" src="/AnguarApp/src/assets/images/Logo.jpg"/>
+<div class="flex-container" style="margin-top: 15px">
+  <div class="flex-container" style="width: 80%">
+    <div style="margin: 5px">      
+      <app-fakelogo></app-fakelogo>
     </div>
     <div>
       <h1>
@@ -14,12 +13,12 @@
     </div>
   </div>
 
-  <div class="flex-container" style="justify-content: flex-end">
-    <div>
-      User: Adam
+  <div class="flex-container" >
+    <div style="margin: 5px">
+      User: {{UserName}}
     </div>
     <div >
-      <button mat-button>Log out</button>
+      <button mat-button (click)="LogOut()" >Log out</button>
     </div>
   </div>
 </div>
