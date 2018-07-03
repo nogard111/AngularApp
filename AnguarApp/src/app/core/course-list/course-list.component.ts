@@ -17,33 +17,32 @@ import { Course } from '../../Classes/Course';
 })
 export class CourseListComponent implements OnInit {
 
-  public coursesItems:ICourse[];
+  public coursesItems: ICourse[];
 
   constructor() { }
 
   ngOnInit() {
-    this.coursesItems=[
-      { 
-        Id:"C1",
-        Title:"Course #1",
-        DurationTime:2,
-        CreationTime:new Date("2018-01-12T13:30:16"),
-        Description:"Desc: Preparing for real life course. some more text and even more and more."
+    this.coursesItems = [
+      {
+        Id: 'C1',
+        Title: 'Course #1',
+        DurationTime: 2,
+        CreationTime: new Date('2018-01-12T13:30:16'),
+        Description: 'Desc: Preparing for real life course. some more text and even more and more.'
       },
-      { 
-        Id:"C2",
-        Title:"Course #2",
-        DurationTime:6,
-        CreationTime:new Date("2018-01-13T14:00:00"),
-        Description:"Desc: Preparing for real life course part 2"
+      {
+        Id: 'C2',
+        Title: 'Course #2',
+        DurationTime: 6,
+        CreationTime: new Date('2018-01-13T14:00:00'),
+        Description: 'Desc: Preparing for real life course part 2'
       },
-  
+
     ];
   }
 
-  public onDeleteEvent(id:string )
-  {
-    console.log('Deleted id ='+ id);
+  public onDeleteEvent(id: string) {
+    console.log('Deleted id =' + id);
   }
 
 }
