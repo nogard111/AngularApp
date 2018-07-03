@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolboxComponent implements OnInit {
 
-  public SearchText :string;
+  public SearchText: string;
 
   constructor() { }
 
