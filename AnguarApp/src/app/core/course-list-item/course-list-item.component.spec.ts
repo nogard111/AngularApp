@@ -1,12 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseListItemComponent } from './course-list-item.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Course } from '../../Classes/Course';
 
 describe('CourseListItemComponent', () => {
   let component: CourseListItemComponent;
   let fixture: ComponentFixture<CourseListItemComponent>;
+  let item: Course ;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,10 +22,26 @@ describe('CourseListItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseListItemComponent);
     component = fixture.componentInstance;
+
+    item = {
+      Id: 'C2',
+      Title: 'Course #2',
+      DurationTime: 6,
+      CreationTime: new Date('2018-01-13T14:00:00'),
+      Description: 'Desc: Preparing for real life course part 2'
+    };
+
+    component.course =  item;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('raises the selected event when clicked', () => {
+    component.DeleteEvent.subscribe(deleteItem => expect(deleteItem).toBe(item.Id));
+    component.Delete();
+  });
+
 });
