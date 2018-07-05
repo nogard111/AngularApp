@@ -24,4 +24,11 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Log out should clear name', () => {
+    fixture.detectChanges();
+    component.LogOut();
+
+     expect(component.UserName).toEqual(component.emptyName);
+  });
 });
