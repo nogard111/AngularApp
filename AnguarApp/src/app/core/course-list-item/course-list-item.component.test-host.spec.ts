@@ -5,6 +5,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Course } from '../../Classes/Course';
 import { By } from '@angular/platform-browser';
+import { DurationPipe } from '../duration.pipe';
+import { CourseBorderDirective } from '../course-border.directive';
 
 
 @Component({
@@ -31,7 +33,7 @@ describe('CourseListItemComponent', () => {
   let component: TestHostComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestHostComponent, CourseListItemComponent ],
+      declarations: [ TestHostComponent, CourseListItemComponent,  DurationPipe, CourseBorderDirective ],
       imports: [ FormsModule]
     })
     .compileComponents();

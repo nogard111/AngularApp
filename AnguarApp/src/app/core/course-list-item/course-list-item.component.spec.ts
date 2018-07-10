@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Course } from '../../Classes/Course';
 import { By } from '@angular/platform-browser';
 import { DurationPipe } from '../duration.pipe';
-import { DatePipe } from '@angular/common';
+import { CourseBorderDirective } from '../course-border.directive';
 
 describe('CourseListItemComponent', () => {
   let component: CourseListItemComponent;
@@ -15,7 +15,7 @@ describe('CourseListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseListItemComponent],
+      declarations: [CourseListItemComponent, DurationPipe, CourseBorderDirective ],
       imports: [FormsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -52,7 +52,7 @@ describe('CourseListItemComponent', () => {
     fixture.detectChanges();
     const courseEl = fixture.debugElement.query(By.css('.courseItem'));
 
-    expect(courseEl.nativeElement.textContent).toContain(item.Title);
+    expect(courseEl.nativeElement.textContent.toLocaleLowerCase()).toContain(item.Title.toLocaleLowerCase());
   });
   it('Display proper description', () => {
     fixture.detectChanges();
