@@ -17,7 +17,7 @@ import { Course } from '../../Classes/Course';
 })
 export class CourseListComponent implements OnInit {
 
-  @Input() public coursesItems: ICourse[];
+  @Input() public coursesItems: ICourse[] = [];
 
   constructor() { }
 
