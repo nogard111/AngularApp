@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public emptyName = '-';
-  public UserName: string = 'Adam';
+  public UserName = 'Adam';
   /**
    * LogOut
    */

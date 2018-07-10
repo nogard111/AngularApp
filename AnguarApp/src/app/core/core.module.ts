@@ -10,13 +10,23 @@ import { ToolboxComponent } from './toolbox/toolbox.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
 import { CoursePageComponent } from './course-page/course-page.component';
+import { CourseBorderDirective } from './course-border.directive';
+import { DurationPipe } from './duration.pipe';
+import { FilterByTitlePipe } from './filter-by-title.pipe';
+import { OrderByDatePipe } from './order-by-date.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule 
+    FormsModule
   ],
-  exports:[HeaderComponent,FooterComponent,CourseListComponent,CourseListItemComponent,ToolboxComponent,BreadcrumbsComponent,CoursePageComponent],
-  declarations: [HeaderComponent, FooterComponent, FakelogoComponent, CourseListComponent, CourseListItemComponent, ToolboxComponent, BreadcrumbsComponent, CoursePageComponent]
+  exports: [
+    HeaderComponent, FooterComponent, CourseListComponent, CourseListItemComponent,
+     ToolboxComponent, BreadcrumbsComponent, CoursePageComponent
+    ],
+  declarations: [HeaderComponent, FooterComponent, FakelogoComponent, CourseListComponent,
+     CourseListItemComponent, ToolboxComponent, BreadcrumbsComponent, CoursePageComponent,
+    CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe
+    ]
 })
 export class CoreModule { }

@@ -1,4 +1,8 @@
-
 <div class="app-course-list">
-<app-course-list-item class="test-tag-1" *ngFor="let item of coursesItems" [course]="item" (DeleteEvent)="onDeleteEvent($event)"></app-course-list-item>
+    <div *ngIf='coursesItems.length>0'>
+        <app-course-list-item class="test-tag-1" *ngFor="let item of coursesItems" [course]="item" (DeleteEvent)="onDeleteEvent($event)"></app-course-list-item>
+    </div>
+    <div *ngIf='coursesItems.length==0'>
+        <p>NO DATA FEEL FREE TO ADD NEW COURSE</p>
+    </div>
 </div>

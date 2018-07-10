@@ -1,4 +1,4 @@
-<app-toolbox></app-toolbox>
-<app-course-list></app-course-list>
+<app-toolbox (SearchEvent)="onSearchEvent($event)"></app-toolbox>
+<app-course-list [coursesItems]='coursesItems | filterByTitle: searchText | orderByDate'></app-course-list>
 
 <button type="button" item-width="100" class="btn btn-success btn-block" (click)="LoadMore()">Load more</button>
