@@ -22,7 +22,7 @@ export class CoursePageComponent implements OnInit, OnDestroy {
         Id: 'C1',
         Title: 'Course #1',
         DurationTime: 145,
-        CreationTime: new Date('2018-07-05T13:30:16'),
+        CreationTime: new Date('2018-07-09T13:30:16'),
         Description: 'Desc: Preparing for real life course. some more text and even more and more.',
         TopRated: true
       },
@@ -30,7 +30,7 @@ export class CoursePageComponent implements OnInit, OnDestroy {
         Id: 'C2',
         Title: 'Course #2',
         DurationTime: 120,
-        CreationTime: new Date('2018-07-12T14:00:00'),
+        CreationTime: new Date('2018-07-19T14:00:00'),
         Description: 'Desc: Preparing for real life course part 2',
         TopRated: false
       },

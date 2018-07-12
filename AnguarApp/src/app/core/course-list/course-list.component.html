@@ -1,8 +1,10 @@
 <div class="app-course-list">
-    <div *ngIf='coursesItems.length>0'>
+    <div *ngIf='coursesItems?.length>0; else templateName'>
         <app-course-list-item class="test-tag-1" *ngFor="let item of coursesItems" [course]="item" (DeleteEvent)="onDeleteEvent($event)"></app-course-list-item>
     </div>
-    <div *ngIf='coursesItems.length==0'>
-        <p>NO DATA FEEL FREE TO ADD NEW COURSE</p>
-    </div>
+    <ng-template #templateName>
+        <div>
+            <p>NO DATA FEEL FREE TO ADD NEW COURSE</p>
+        </div>
+    </ng-template>
 </div>

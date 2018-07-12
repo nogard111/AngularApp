@@ -9,20 +9,22 @@ export class CourseBorderDirective {
         const dateNow = new Date();
         const datePrevious = new Date();
         datePrevious.setDate(dateNow.getDate() - 14);
-        if (date > dateNow) {
-            this.renderer.setStyle(this.el.nativeElement, 'border-width', '5px');
-            this.renderer.setStyle(this.el.nativeElement, 'border-style', 'solid');
-            this.renderer.setStyle(this.el.nativeElement, 'border-color', 'blue');
-        } else {
-            if (date > datePrevious) {
-                this.renderer.setStyle(this.el.nativeElement, 'border-width', '5px');
-                this.renderer.setStyle(this.el.nativeElement, 'border-style', 'solid');
-                this.renderer.setStyle(this.el.nativeElement, 'border-color', 'green');
-            } else {
-                this.renderer.setStyle(this.el.nativeElement, 'border-width', '0px');
-            }
-        }
 
+        if (date > dateNow) {
+            this.SetBorder('blue');
+            return;
+        }
+        if (date > datePrevious) {
+            this.SetBorder('green');
+            return;
+        }
+        this.renderer.setStyle(this.el.nativeElement, 'border-width', '0px');
+    }
+
+    SetBorder(color: string) {
+        this.renderer.setStyle(this.el.nativeElement, 'border-width', '5px');
+        this.renderer.setStyle(this.el.nativeElement, 'border-style', 'solid');
+        this.renderer.setStyle(this.el.nativeElement, 'border-color', color);
     }
 
     constructor(private el: ElementRef, private renderer: Renderer2) {
