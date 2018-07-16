@@ -23,8 +23,10 @@ export class CourseListItemComponent implements OnInit {
   }
 
   public Delete() {
-    if (this.DeleteEvent != null) {
-      this.DeleteEvent.emit(this.course.Id);
+    if (confirm('Are you sure to delete ' + this.course.Title)) {
+      if (this.DeleteEvent != null) {
+        this.DeleteEvent.emit(this.course.Id);
+      }
     }
 
   }

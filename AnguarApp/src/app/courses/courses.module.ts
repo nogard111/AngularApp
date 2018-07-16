@@ -9,6 +9,7 @@ import { CourseBorderDirective } from './course-border.directive';
 import { DurationPipe } from './duration.pipe';
 import { FilterByTitlePipe } from './filter-by-title.pipe';
 import { OrderByDatePipe } from './order-by-date.pipe';
+import { CourseService } from './course.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { OrderByDatePipe } from './order-by-date.pipe';
   declarations: [   CourseListComponent,
     CourseListItemComponent, ToolboxComponent,  CoursePageComponent,
     CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe
-  ]
+  ],
+  providers: [ CourseService]
 })
 export class CoursesModule { }

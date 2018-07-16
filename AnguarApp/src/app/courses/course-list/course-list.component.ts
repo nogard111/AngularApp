@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
   MatListModule,
   MatListItem,
@@ -16,6 +16,7 @@ import { ICourse } from '../Course-interface';
 export class CourseListComponent implements OnInit {
 
   @Input() public coursesItems: ICourse[] = [];
+  @Output() public DeleteEvent = new EventEmitter<string>();
 
   constructor() { }
 
@@ -23,9 +24,11 @@ export class CourseListComponent implements OnInit {
 
   }
 
+
   public onDeleteEvent(id: string) {
-    console.log('Deleted id =' + id);
-    this.coursesItems.splice(this.coursesItems.findIndex((value: ICourse) => value.Id === id), 1);
+    if (this.DeleteEvent != null) {
+      this.DeleteEvent.emit(id);
+    }
   }
 
 }

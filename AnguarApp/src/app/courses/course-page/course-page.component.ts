@@ -1,60 +1,51 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ICourse } from '../Course-interface';
+import { CourseService } from '../course.service';
 
 @Component({
   selector: 'app-course-page',
   templateUrl: './course-page.component.html',
   styleUrls: ['./course-page.component.css']
 })
-export class CoursePageComponent implements OnInit, OnDestroy {
-
+export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
 
   public coursesItems: ICourse[] = [];
   public searchText = '';
 
-  constructor() { }
+  constructor(private courseService: CourseService) {
+    this.update();
+   }
 
   ngOnInit() {
     console.log('OnInit');
-
-    this.coursesItems = [
-      {
-        Id: 'C1',
-        Title: 'Course #1',
-        DurationTime: 145,
-        CreationTime: new Date('2018-07-09T13:30:16'),
-        Description: 'Desc: Preparing for real life course. some more text and even more and more.',
-        TopRated: true
-      },
-      {
-        Id: 'C2',
-        Title: 'Course #2',
-        DurationTime: 120,
-        CreationTime: new Date('2018-07-19T14:00:00'),
-        Description: 'Desc: Preparing for real life course part 2',
-        TopRated: false
-      },
-      {
-        Id: 'C3',
-        Title: 'Course #3',
-        DurationTime: 30,
-        CreationTime: new Date('2018-02-22T14:00:00'),
-        Description: 'Desc: Preparing for real life course part 3',
-        TopRated: true
-      },
-
-    ];
-
   }
   ngOnDestroy(): void {
     console.log('OnDestroy');
   }
+
+  ngOnChanges(): void {
+    this.update();
+  }
+
+  public update() {
+    this.coursesItems = this.courseService.Getlist().map(q => q);
+  }
+
   public LoadMore() {
     console.log('LoadMore');
+  }
+
+  GetCourseslist(): ICourse[] {
+    this.update();
+    return this.coursesItems;
   }
 
   public onSearchEvent(text: string) {
     this.searchText = text;
   }
 
+  public onDeleteEvent(id: string) {
+    this.courseService.RemoveItem(id);
+    this.update();
+  }
 }

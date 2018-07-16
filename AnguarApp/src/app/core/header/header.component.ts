@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../../user/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +9,29 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public emptyName = '-';
-  public UserName = 'Adam';
-  /**
+  public UserName = '-';
+  /*
    * LogOut
    */
   public LogOut() {
-    this.UserName = this.emptyName;
-    console.log('Log out ');
+    this.authService.logOut();
   }
 
-  constructor() { }
+  constructor(private authService: AuthorizationService) {
+    this.refresh();
+  }
 
   ngOnInit() {
+    this.authService.AuthenticationEvent.subscribe(
+      () => { this.refresh(); });
+  }
+
+  refresh() {
+    if (this.authService == null ||  this.authService.logedUser == null) {
+      this.UserName = this.emptyName;
+    } else {
+      this.UserName = this.authService.logedUser.FirstName;
+    }
   }
 
 }
