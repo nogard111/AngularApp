@@ -1,0 +1,11 @@
+input[type=text], input[type=password], button {
+    width: 100%;
+    padding: 11px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.login-style{
+    width: 400px;
+}
