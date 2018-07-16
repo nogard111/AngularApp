@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseListItemComponent } from './course-list-item.component';
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Course } from '../../Classes/Course';
+import { Course } from '../Course';
 import { By } from '@angular/platform-browser';
 import { DurationPipe } from '../duration.pipe';
 import { CourseBorderDirective } from '../course-border.directive';

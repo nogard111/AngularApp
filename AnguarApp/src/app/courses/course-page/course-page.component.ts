@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ICourse } from '../../Interfaces/Course-interface';
+import { ICourse } from '../Course-interface';
 
 @Component({
   selector: 'app-course-page',

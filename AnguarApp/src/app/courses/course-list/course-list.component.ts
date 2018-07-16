@@ -5,10 +5,8 @@ import {
   MatList
 } from '@angular/material';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
-import { User } from '../../Classes/User';
-import { IUser } from '../../Interfaces/User-interface';
-import { ICourse } from '../../Interfaces/Course-interface';
-import { Course } from '../../Classes/Course';
+
+import { ICourse } from '../Course-interface';
 
 @Component({
   selector: 'app-course-list',

@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
+import { CoursesModule } from './courses/courses.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     CoreModule ,
+    UserModule,
+    CoursesModule,
     FormsModule
   ],
   providers: [],

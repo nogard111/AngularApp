@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ICourse } from '../../Interfaces/Course-interface';
+import { ICourse } from '../Course-interface';
 
 
 @Component({
