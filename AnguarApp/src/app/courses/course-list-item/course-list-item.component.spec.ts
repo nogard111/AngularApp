@@ -7,6 +7,9 @@ import { Course } from '../Course';
 import { By } from '@angular/platform-browser';
 import { DurationPipe } from '../duration.pipe';
 import { CourseBorderDirective } from '../course-border.directive';
+import { ICourseService } from '../icourse.service';
+import { CourseTestService } from './course-test-service';
+import { CourseService } from '../course.service';
 
 describe('CourseListItemComponent', () => {
   let component: CourseListItemComponent;
@@ -17,7 +20,8 @@ describe('CourseListItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CourseListItemComponent, DurationPipe, CourseBorderDirective ],
       imports: [FormsModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [ {provide: CourseService, useClass: CourseTestService}]
     })
       .compileComponents();
   }));
@@ -44,8 +48,9 @@ describe('CourseListItemComponent', () => {
   });
 
   it('raises the selected event when clicked', () => {
-    component.DeleteEvent.subscribe(deleteItem => expect(deleteItem).toBe(item.Id));
+    const sevice = TestBed.get(CourseService);
     component.Delete();
+     expect(sevice.deleteId).toBe(item.Id);
   });
 
   it('Display proper title', () => {

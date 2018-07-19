@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ICourse } from '../Course-interface';
+import { ICourseService } from '../icourse.service';
 import { CourseService } from '../course.service';
 
 

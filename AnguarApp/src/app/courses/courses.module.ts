@@ -10,6 +10,7 @@ import { DurationPipe } from './duration.pipe';
 import { FilterByTitlePipe } from './filter-by-title.pipe';
 import { OrderByDatePipe } from './order-by-date.pipe';
 import { CourseService } from './course.service';
+import { ICourseService } from './icourse.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { CourseService } from './course.service';
     CourseListItemComponent, ToolboxComponent,  CoursePageComponent,
     CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe
   ],
+  // providers: [ {provide: ICourseService, useClass: CourseService}]
   providers: [ CourseService]
 })
 export class CoursesModule { }

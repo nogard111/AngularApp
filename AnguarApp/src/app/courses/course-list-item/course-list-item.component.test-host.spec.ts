@@ -7,10 +7,13 @@ import { Course } from '../Course';
 import { By } from '@angular/platform-browser';
 import { DurationPipe } from '../duration.pipe';
 import { CourseBorderDirective } from '../course-border.directive';
+import { CourseService } from '../course.service';
+import { CourseTestService } from './course-test-service';
+import { ICourseService } from '../icourse.service';
 
 
 @Component({
-  template: '<app-course-list-item [course]="course" (DeleteEvent)="onDeleteEvent($event)"></app-course-list-item>'
+  template: '<app-course-list-item [course]="course"></app-course-list-item>'
 })
 class TestHostComponent {
   public deletedId: string;
@@ -28,13 +31,14 @@ class TestHostComponent {
   }
 }
 
-describe('CourseListItemComponent', () => {
+describe('CourseListItemComponentHost', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let component: TestHostComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TestHostComponent, CourseListItemComponent,  DurationPipe, CourseBorderDirective ],
-      imports: [ FormsModule]
+      imports: [ FormsModule],
+      providers: [ {provide: ICourseService, useClass: CourseTestService}]
     })
     .compileComponents();
   }));
@@ -48,12 +52,12 @@ describe('CourseListItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
+/*
   it('should rise DeleteEvent', () => {
     fixture.detectChanges();
     const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     deleteButton.triggerEventHandler('click', null);
 
-     expect(component.deletedId).toEqual(component.course.Id);
-  });
+     expect(component.CourseService.deletedId).toEqual(component.course.Id);
+  });*/
 });

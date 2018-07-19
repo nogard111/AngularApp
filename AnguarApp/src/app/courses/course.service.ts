@@ -1,15 +1,18 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { ICourse } from './Course-interface';
+import { ICourseService } from './icourse.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
+export class CourseService implements ICourseService {
   public coursesItems: ICourse[] = [];
 
   @Output() ChangeEvent: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
+    console.log('service created');
+
     this.coursesItems = [
       {
         Id: 'C1',
