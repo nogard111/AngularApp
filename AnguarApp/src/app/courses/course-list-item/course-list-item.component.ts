@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ICourse } from '../Course-interface';
+import { CourseService } from '../course.service';
 
 
 @Component({
@@ -10,9 +11,8 @@ import { ICourse } from '../Course-interface';
 export class CourseListItemComponent implements OnInit {
 
   @Input() public course: ICourse;
-  @Output() public DeleteEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
   }
@@ -24,9 +24,7 @@ export class CourseListItemComponent implements OnInit {
 
   public Delete() {
     if (confirm('Are you sure to delete ' + this.course.Title)) {
-      if (this.DeleteEvent != null) {
-        this.DeleteEvent.emit(this.course.Id);
-      }
+      this.courseService.RemoveItem(this.course.Id);
     }
 
   }

@@ -16,19 +16,11 @@ import { ICourse } from '../Course-interface';
 export class CourseListComponent implements OnInit {
 
   @Input() public coursesItems: ICourse[] = [];
-  @Output() public DeleteEvent = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
 
-  }
-
-
-  public onDeleteEvent(id: string) {
-    if (this.DeleteEvent != null) {
-      this.DeleteEvent.emit(id);
-    }
   }
 
 }

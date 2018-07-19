@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { ICourse } from './Course-interface';
 
 @Injectable({
@@ -6,6 +6,8 @@ import { ICourse } from './Course-interface';
 })
 export class CourseService {
   public coursesItems: ICourse[] = [];
+
+  @Output() ChangeEvent: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
     this.coursesItems = [
@@ -55,6 +57,7 @@ export class CourseService {
   RemoveItem(id: String) {
     console.log('Deleted id =' + id);
     this.coursesItems.splice(this.coursesItems.findIndex((value: ICourse) => value.Id === id), 1);
+    this.ChangeEvent.emit();
   }
 
 }

@@ -14,13 +14,15 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(private courseService: CourseService) {
     this.update();
-   }
+  }
 
   ngOnInit() {
     console.log('OnInit');
+    this.courseService.ChangeEvent.subscribe(() => { this.update(); });
   }
   ngOnDestroy(): void {
     console.log('OnDestroy');
+    this.courseService.ChangeEvent.unsubscribe();
   }
 
   ngOnChanges(): void {
@@ -42,10 +44,5 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
 
   public onSearchEvent(text: string) {
     this.searchText = text;
-  }
-
-  public onDeleteEvent(id: string) {
-    this.courseService.RemoveItem(id);
-    this.update();
   }
 }
