@@ -1,0 +1,32 @@
+<div>
+  <p>Title:</p>
+  <input class='max-width' [(ngModel)]='course.Title'>
+  <p></p>
+
+  <p>Description:</p>
+  <textarea class='max-width' [(ngModel)]='course.Description'></textarea>
+  <p></p>
+
+  <p>Date:</p>
+  <input class='max-width' [(ngModel)]='course.CreationTime'>
+  <p></p>
+
+  <p>Duration:</p>
+  <table>
+    <tr>
+      <th>
+        <input class='max-width200' [(ngModel)]='course.DurationTime'>
+      </th>
+      <th>
+        <div>{{course.DurationTime| duration}}</div>
+      </th>
+    </tr>
+  </table>
+  <p></p>
+
+  <p>Authors:</p>
+  <input class='max-width'>
+
+  <button type="button" item-width="100" class="btn btn-success btn-block" (click)="save()">Save</button>
+  <button type="button" item-width="100" class="btn delete-button btn-danger btn-block" (click)="cancel()">Cancel</button>
+</div>

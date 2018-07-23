@@ -12,7 +12,7 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
   public coursesItems: ICourse[] = [];
   public searchText = '';
 
-  constructor(private courseService: CourseService) {
+  constructor(public courseService: CourseService) {
     this.update();
   }
 
@@ -42,6 +42,10 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
     return this.coursesItems;
   }
 
+  getCourse(): ICourse {
+    //return  this.courseService.GetItemById(this.courseService.editCourse);
+    return Object.assign({}, this.courseService.GetItemById(this.courseService.editCourse));
+  }
   public onSearchEvent(text: string) {
     this.searchText = text;
   }

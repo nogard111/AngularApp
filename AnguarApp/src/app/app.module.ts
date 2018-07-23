@@ -1,11 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FormsModule } from '@angular/forms';
 import { UserModule } from './user/user.module';
 import { CoursesModule } from './courses/courses.module';
+import { CoursePageComponent } from './courses/course-page/course-page.component';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
+
+const appRoutes: Routes = [
+  { path: 'course/:id',      component: EditCourseComponent },
+  {
+    path: 'courses',
+    component: CoursePageComponent,
+    data: { title: 'Courses List' }
+  },
+  {
+    path: '',
+    redirectTo: '/courses',
+    pathMatch: 'full'
+  },
+ // { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +34,11 @@ import { CoursesModule } from './courses/courses.module';
     CoreModule ,
     UserModule,
     CoursesModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+     // { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

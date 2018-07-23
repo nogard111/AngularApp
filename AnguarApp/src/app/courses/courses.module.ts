@@ -11,6 +11,7 @@ import { FilterByTitlePipe } from './filter-by-title.pipe';
 import { OrderByDatePipe } from './order-by-date.pipe';
 import { CourseService } from './course.service';
 import { ICourseService } from './icourse.service';
+import { EditCourseComponent } from './edit-course/edit-course.component';
 
 @NgModule({
   imports: [
@@ -19,11 +20,11 @@ import { ICourseService } from './icourse.service';
   ],
   exports: [
     CourseListComponent, CourseListItemComponent,
-    ToolboxComponent, CoursePageComponent
+    ToolboxComponent, CoursePageComponent, EditCourseComponent
   ],
   declarations: [   CourseListComponent,
     CourseListItemComponent, ToolboxComponent,  CoursePageComponent,
-    CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe
+    CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe, EditCourseComponent
   ],
   // providers: [ {provide: ICourseService, useClass: CourseService}]
   providers: [ CourseService]

@@ -7,6 +7,7 @@ import { ICourseService } from './icourse.service';
 })
 export class CourseService implements ICourseService {
   public coursesItems: ICourse[] = [];
+  public editCourse: any = null;
 
   @Output() ChangeEvent: EventEmitter<void> = new EventEmitter<void>();
 
@@ -54,7 +55,18 @@ export class CourseService implements ICourseService {
   }
 
   UpdateItem(id: String, item: ICourse) {
+    const course = this.coursesItems.find(q => q.Id === id);
+    this.copyCourse(item, course);
+    this.editCourse = null;
+  }
 
+  private copyCourse(source: ICourse, destination: ICourse) {
+    destination.Title = source.Title;
+    destination.Id = source.Id;
+    destination.CreationTime = source.CreationTime;
+    destination.DurationTime = source.DurationTime;
+    destination.Description = source.Description;
+    destination.TopRated = source.TopRated;
   }
 
   RemoveItem(id: String) {

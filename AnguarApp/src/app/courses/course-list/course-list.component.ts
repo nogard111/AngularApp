@@ -4,9 +4,10 @@ import {
   MatListItem,
   MatList
 } from '@angular/material';
-import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
 
 import { ICourse } from '../Course-interface';
+import { CourseService } from '../course.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -17,10 +18,20 @@ export class CourseListComponent implements OnInit {
 
   @Input() public coursesItems: ICourse[] = [];
 
-  constructor() { }
+  constructor(private courseService: CourseService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
 
   }
 
+  public onDeleteEvent(id: string) {
+    this.courseService.RemoveItem(id);
+  }
+  public onEditEvent(id: string) {
+    console.log('Edit');
+    this.courseService.editCourse = id;
+    // this.router.navigate(['/course', { id: this.course.Id }]);
+  }
 }

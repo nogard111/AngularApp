@@ -1,6 +1,8 @@
 <div class="app-course-list">
     <div *ngIf='coursesItems?.length>0; else templateName'>
-        <app-course-list-item class="test-tag-1" *ngFor="let item of coursesItems" [course]="item"></app-course-list-item>
+        <app-course-list-item class="test-tag-1" *ngFor="let item of coursesItems" 
+            [course]="item" (DeleteEvent)="onDeleteEvent($event)" (EditEvent)="onEditEvent($event)">
+        </app-course-list-item>
     </div>
     <ng-template #templateName>
         <div>

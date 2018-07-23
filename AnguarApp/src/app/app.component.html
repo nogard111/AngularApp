@@ -6,7 +6,6 @@
     <div *ngIf='authService.IsAuthenticated();else login_content'>
         <app-breadcrumbs></app-breadcrumbs>
         <app-course-page></app-course-page>
-        <p></p>
     </div>
     <ng-template #login_content>
         <app-login-page></app-login-page>        

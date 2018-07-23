@@ -1,4 +1,8 @@
-<app-toolbox (SearchEvent)="onSearchEvent($event)"></app-toolbox>
-<app-course-list [coursesItems]='coursesItems | filterByTitle: searchText | orderByDate'></app-course-list>
-
-<button type="button" item-width="100" class="btn btn-success btn-block" (click)="LoadMore()">Load more</button>
+<div *ngIf='courseService.editCourse==null;else edit_content'>
+    <app-toolbox (SearchEvent)="onSearchEvent($event)"></app-toolbox>
+    <app-course-list [coursesItems]='coursesItems | filterByTitle: searchText | orderByDate'></app-course-list>
+    <button type="button" item-width="100" class="btn btn-success btn-block" (click)="LoadMore()">Load more</button>
+</div>
+<ng-template #edit_content>
+    <app-edit-course [course]='getCourse()'></app-edit-course>
+</ng-template>
