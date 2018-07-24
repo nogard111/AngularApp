@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { CourseService } from '../course.service';
 
 @Component({
   selector: 'app-toolbox',
@@ -10,10 +11,11 @@ export class ToolboxComponent implements OnInit {
   public SearchText: string;
   @Output() public SearchEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   public AddCourse() {
     console.log('Course added ');
+    this.courseService.editCourse = 'new id';
   }
 
   public Search() {
