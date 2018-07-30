@@ -17,7 +17,7 @@ export class ToolboxComponent implements OnInit {
 
   public AddCourse() {
     console.log('Course added ');
-    this.router.navigate(['courseNew']);
+    this.router.navigate(['/courses/new']);
   }
 
   public Search() {

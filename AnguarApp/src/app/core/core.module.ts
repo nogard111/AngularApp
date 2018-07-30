@@ -8,6 +8,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
 import { UserModule } from '../user/user.module';
 import { AuthorizationService } from '../user/authorization.service';
+import { CanActivateGuard } from './can-activate-guard';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { AuthorizationService } from '../user/authorization.service';
   declarations: [HeaderComponent, FooterComponent, FakelogoComponent,
     BreadcrumbsComponent
   ],
-  providers: [AuthorizationService]
+  providers: [AuthorizationService, CanActivateGuard]
 
 })
 export class CoreModule { }

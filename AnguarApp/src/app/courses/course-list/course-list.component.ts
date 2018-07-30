@@ -32,6 +32,6 @@ export class CourseListComponent implements OnInit {
   public onEditEvent(id: string) {
     console.log('Edit');
     // this.courseService.editCourse = id;
-    this.router.navigate(['/course', id ]);
+    this.router.navigate(['/courses', id ]);
   }
 }

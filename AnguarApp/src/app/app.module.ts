@@ -10,13 +10,15 @@ import { CoursesModule } from './courses/courses.module';
 import { CoursePageComponent } from './courses/course-page/course-page.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CanActivateGuard } from './core/can-activate-guard';
 
 const appRoutes: Routes = [
-  { path: 'courses/:id',      component: EditCourseComponent },
-  { path: 'courses/New',      component: EditCourseComponent },
+  { path: 'courses/:id', component: EditCourseComponent, canActivate: [CanActivateGuard] },
+  { path: 'courses/New', component: EditCourseComponent, canActivate: [CanActivateGuard] },
   {
     path: 'courses',
     component: CoursePageComponent,
+    canActivate: [CanActivateGuard],
     data: { title: 'Courses List' }
   },
   {
@@ -24,7 +26,11 @@ const appRoutes: Routes = [
     redirectTo: '/courses',
     pathMatch: 'full'
   },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: '**',
+    redirectTo: 'notfound'
+  },
+  { path: 'notfound', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -34,13 +40,13 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    CoreModule ,
+    CoreModule,
     UserModule,
     CoursesModule,
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
-     // { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   providers: [],

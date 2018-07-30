@@ -15,17 +15,19 @@ export class AuthorizationService {
       this.logedUser = { FirstName: name, Id: 'sdfd', LastName: 'Smith' };
     }
   }
-  logIn(name: string, pass: string) {
+  logIn(name: string, pass: string): boolean {
     console.log('Log in successfully');
     this.logedUser = { FirstName: name, Id: 'sdfd', LastName: 'Smith' };
     localStorage.setItem(this.logedUserStorageKey, name);
     this.AuthenticationEvent.emit();
+    return true;
   }
-  logOut() {
+  logOut(): boolean {
     this.logedUser = null;
     console.log('Log out successfully');
     localStorage.removeItem(this.logedUserStorageKey);
     this.AuthenticationEvent.emit();
+    return true;
   }
   IsAuthenticated(): boolean {
     return this.logedUser != null;
