@@ -12,6 +12,7 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
 
   public coursesItems: ICourse[] = [];
   public searchText = '';
+  public subscription: any;
 
   constructor(public courseService: CourseService) {
     this.update();
@@ -19,11 +20,11 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     console.log('OnInit');
-    this.courseService.ChangeEvent.subscribe(() => { this.update(); });
+    this.subscription = this.courseService.ChangeEvent.subscribe(() => { this.update(); });
   }
   ngOnDestroy(): void {
     console.log('OnDestroy');
-    this.courseService.ChangeEvent.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges(): void {

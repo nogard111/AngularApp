@@ -20,15 +20,14 @@ export class EditCourseComponent implements OnInit {
     this.route.params.subscribe(params => {
       // console.log(params);
       const id = params['id'];
-      if (id == null) {
+      const courseOrginal = this.courseService.GetItemById(id);
+      if (courseOrginal == null) {
         this.isUpdating = false;
         this.course = { Id: uuid(), Title: '', CreationTime: new Date, Description: '', TopRated: false, DurationTime: 0 };
-
         this.breadCrumbService.CourseName = 'new';
       } else {
         this.isUpdating = true;
-        this.course = Object.assign({}, this.courseService.GetItemById(id));
-
+        this.course = Object.assign({}, courseOrginal);
         this.breadCrumbService.CourseName = this.course.Title;
       }
 
