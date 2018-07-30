@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ICourse } from '../Course-interface';
 import { CourseService } from '../course.service';
+import { Course } from '../Course';
 
 @Component({
   selector: 'app-course-page',
@@ -43,8 +44,8 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getCourse(): ICourse {
-    //return  this.courseService.GetItemById(this.courseService.editCourse);
-    return Object.assign({}, this.courseService.GetItemById(this.courseService.editCourse));
+    // return  this.courseService.GetItemById(this.courseService.editCourse);
+    return new Course(); // Object.assign({}, this.courseService.GetItemById(this.courseService.editCourse));
   }
   public onSearchEvent(text: string) {
     this.searchText = text;

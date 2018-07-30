@@ -9,9 +9,11 @@ import { UserModule } from './user/user.module';
 import { CoursesModule } from './courses/courses.module';
 import { CoursePageComponent } from './courses/course-page/course-page.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'course/:id',      component: EditCourseComponent },
+  { path: 'courses/:id',      component: EditCourseComponent },
+  { path: 'courses/New',      component: EditCourseComponent },
   {
     path: 'courses',
     component: CoursePageComponent,
@@ -22,12 +24,13 @@ const appRoutes: Routes = [
     redirectTo: '/courses',
     pathMatch: 'full'
   },
- // { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

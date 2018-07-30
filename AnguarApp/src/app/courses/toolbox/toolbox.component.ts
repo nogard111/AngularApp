@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CourseService } from '../course.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbox',
@@ -11,11 +12,12 @@ export class ToolboxComponent implements OnInit {
   public SearchText: string;
   @Output() public SearchEvent = new EventEmitter<string>();
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private activeRoute: ActivatedRoute,
+    private router: Router) { }
 
   public AddCourse() {
     console.log('Course added ');
-    this.courseService.editCourse = 'new id';
+    this.router.navigate(['courseNew']);
   }
 
   public Search() {

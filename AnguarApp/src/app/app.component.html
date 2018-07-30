@@ -3,12 +3,15 @@
 -->
 <div class="container">
     <app-header></app-header>
+    <app-breadcrumbs></app-breadcrumbs>
+    
     <div *ngIf='authService.IsAuthenticated();else login_content'>
-        <app-breadcrumbs></app-breadcrumbs>
-        <app-course-page></app-course-page>
+        <!--<app-course-page></app-course-page>-->
+        <router-outlet></router-outlet>
     </div>
     <ng-template #login_content>
         <app-login-page></app-login-page>        
     </ng-template>
-    <app-footer></app-footer>
+
+    <app-footer></app-footer>    
 </div>

@@ -2,6 +2,7 @@ import { ICourseService } from '../icourse.service';
 import { ICourse } from '../Course-interface';
 
 export class CourseTestService implements ICourseService {
+
     public deleteId: String;
     RemoveItem(id: String) {
         this.deleteId = id;
@@ -14,5 +15,8 @@ export class CourseTestService implements ICourseService {
     }
 
     UpdateItem(id: String, item: ICourse) {
+    }
+
+    AddItem(item: ICourse) {
     }
 }
