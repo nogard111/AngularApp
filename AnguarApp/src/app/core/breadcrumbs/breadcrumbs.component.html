@@ -1,11 +1,11 @@
 <ul class="breadcrumb">
   <li>
-    <a href="#">Home</a>
+    <a href="/courses">Courses</a>
   </li>
+  <div *ngIf="breadCrumbService.CourseName != '' ">
   <li>/</li>
+</div>
   <li>
-    <a href="#">Some page 1</a>
+    {{breadCrumbService.CourseName}}
   </li>
-  <li>/</li>
-  <li>Courses</li>
 </ul>

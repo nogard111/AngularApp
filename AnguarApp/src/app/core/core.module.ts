@@ -8,7 +8,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FormsModule } from '@angular/forms';
 import { UserModule } from '../user/user.module';
 import { AuthorizationService } from '../user/authorization.service';
-import { CanActivateGuard } from './can-activate-guard';
+import { CanActivateAuthenticateGuard } from './can-activate-authenticate-guard';
+import { BreadCrumbHelperService } from './bread-crumb-helper.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { CanActivateGuard } from './can-activate-guard';
   declarations: [HeaderComponent, FooterComponent, FakelogoComponent,
     BreadcrumbsComponent
   ],
-  providers: [AuthorizationService, CanActivateGuard]
+  providers: [AuthorizationService, CanActivateAuthenticateGuard, BreadCrumbHelperService]
 
 })
 export class CoreModule { }

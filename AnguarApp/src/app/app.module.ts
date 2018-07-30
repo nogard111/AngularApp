@@ -10,17 +10,17 @@ import { CoursesModule } from './courses/courses.module';
 import { CoursePageComponent } from './courses/course-page/course-page.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { CanActivateGuard } from './core/can-activate-guard';
+import { CanActivateAuthenticateGuard } from './core/can-activate-authenticate-guard';
 import { LoginPageComponent } from './user/login-page/login-page.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
-  { path: 'courses/:id', component: EditCourseComponent, canActivate: [CanActivateGuard] },
-  { path: 'courses/New', component: EditCourseComponent, canActivate: [CanActivateGuard] },
+  { path: 'courses/:id', component: EditCourseComponent, canActivate: [CanActivateAuthenticateGuard] },
+  { path: 'courses/New', component: EditCourseComponent, canActivate: [CanActivateAuthenticateGuard] },
   {
     path: 'courses',
     component: CoursePageComponent,
-    canActivate: [CanActivateGuard],
+    canActivate: [CanActivateAuthenticateGuard],
     data: { title: 'Courses List' }
   },
   {
