@@ -11,8 +11,10 @@ import { CoursePageComponent } from './courses/course-page/course-page.component
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CanActivateGuard } from './core/can-activate-guard';
+import { LoginPageComponent } from './user/login-page/login-page.component';
 
 const appRoutes: Routes = [
+  { path: 'login', component: LoginPageComponent },
   { path: 'courses/:id', component: EditCourseComponent, canActivate: [CanActivateGuard] },
   { path: 'courses/New', component: EditCourseComponent, canActivate: [CanActivateGuard] },
   {
@@ -23,14 +25,14 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/courses',
+    redirectTo: 'courses',
     pathMatch: 'full'
   },
+  { path: 'notfound', component: PageNotFoundComponent },
   {
     path: '**',
     redirectTo: 'notfound'
   },
-  { path: 'notfound', component: PageNotFoundComponent },
 ];
 
 @NgModule({
