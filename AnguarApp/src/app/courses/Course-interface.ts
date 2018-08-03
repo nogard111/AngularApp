@@ -1,5 +1,5 @@
 export class ICourse {
- public Id: string;
+ public id: string;
  public Title: string;
  public CreationTime: Date;
  public DurationTime: number;

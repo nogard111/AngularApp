@@ -1,5 +1,4 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { BreadCrumbHelperService } from '../bread-crumb-helper.service';
 
 @Component({
@@ -8,6 +7,6 @@ import { BreadCrumbHelperService } from '../bread-crumb-helper.service';
   styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent  {
-  constructor(private route: ActivatedRoute, private router: Router, private breadCrumbService: BreadCrumbHelperService) { }
+  constructor(public breadCrumbService: BreadCrumbHelperService) { }
 
 }

@@ -12,6 +12,8 @@ import { EditCourseComponent } from './courses/edit-course/edit-course.component
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CanActivateAuthenticateGuard } from './core/can-activate-authenticate-guard';
 import { LoginPageComponent } from './user/login-page/login-page.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth-interceptor';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -46,12 +48,14 @@ const appRoutes: Routes = [
     UserModule,
     CoursesModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

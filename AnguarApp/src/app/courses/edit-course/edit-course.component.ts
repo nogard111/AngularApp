@@ -20,23 +20,32 @@ export class EditCourseComponent implements OnInit {
     this.route.params.subscribe(params => {
       // console.log(params);
       const id = params['id'];
-      const courseOrginal = this.courseService.GetItemById(id);
-      if (courseOrginal == null) {
-        this.isUpdating = false;
-        this.course = { Id: uuid(), Title: '', CreationTime: new Date, Description: '', TopRated: false, DurationTime: 0 };
-        this.breadCrumbService.CourseName = 'new';
+      if (id === 'new') {
+        this.initAsNew();
       } else {
-        this.isUpdating = true;
-        this.course = Object.assign({}, courseOrginal);
-        this.breadCrumbService.CourseName = this.course.Title;
+        this.courseService.GetItemById(id).subscribe((courseOrginal) => {
+          if (courseOrginal != null) {
+            this.isUpdating = true;
+            this.course = Object.assign({}, courseOrginal);
+            this.breadCrumbService.CourseName = this.course.Title;
+          }
+        }, () =>
+            this.initAsNew()
+        );
       }
-
     }
     );
   }
+
+  private initAsNew() {
+    this.isUpdating = false;
+    this.course = { id: uuid(), Title: '', CreationTime: new Date, Description: '', TopRated: false, DurationTime: 0 };
+    this.breadCrumbService.CourseName = 'new';
+  }
+
   public save() {
     if (this.isUpdating) {
-      this.courseService.UpdateItem(this.course.Id, this.course);
+      this.courseService.UpdateItem(this.course.id, this.course);
     } else {
       this.courseService.AddItem(this.course);
     }

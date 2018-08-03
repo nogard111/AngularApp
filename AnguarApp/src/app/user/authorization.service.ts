@@ -12,12 +12,12 @@ export class AuthorizationService {
   constructor() {
     const name = localStorage.getItem(this.logedUserStorageKey);
     if (name != null) {
-      this.logedUser = { FirstName: name, Id: 'sdfd', LastName: 'Smith' };
+      this.logedUser = { FirstName: name, id: 'sdfd', LastName: 'Smith' };
     }
   }
   logIn(name: string, pass: string): boolean {
     console.log('Log in successfully');
-    this.logedUser = { FirstName: name, Id: 'sdfd', LastName: 'Smith' };
+    this.logedUser = { FirstName: name, id: 'sdfd', LastName: 'Smith' };
     localStorage.setItem(this.logedUserStorageKey, name);
     this.AuthenticationEvent.emit();
     return true;

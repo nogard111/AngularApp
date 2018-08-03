@@ -1,5 +1,6 @@
 import { ICourseService } from '../icourse.service';
 import { ICourse } from '../Course-interface';
+import { Observable } from 'rxjs';
 
 export class CourseTestService implements ICourseService {
 
@@ -7,10 +8,10 @@ export class CourseTestService implements ICourseService {
     RemoveItem(id: String) {
         this.deleteId = id;
     }
-    Getlist(): ICourse[] {
+    Getlist(): Observable<ICourse[]> {
         return null;
     }
-    GetItemById(id: String): ICourse {
+    GetItemById(id: String): Observable<ICourse> {
         return null;
     }
 

@@ -22,14 +22,14 @@ export class CourseListItemComponent implements OnInit {
 
   public Edit() {
     if (this.EditEvent != null) {
-      this.EditEvent.emit(this.course.Id);
+      this.EditEvent.emit(this.course.id);
     }
   }
 
   public Delete() {
     if (confirm('Are you sure to delete ' + this.course.Title)) {
       if (this.DeleteEvent != null) {
-        this.DeleteEvent.emit(this.course.Id);
+        this.DeleteEvent.emit(this.course.id);
       }
     }
   }

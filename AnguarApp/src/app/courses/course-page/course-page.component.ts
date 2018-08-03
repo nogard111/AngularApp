@@ -32,7 +32,7 @@ export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public update() {
-    this.coursesItems = this.courseService.Getlist().map(q => q);
+    this.courseService.Getlist().subscribe((data) => this.coursesItems = data.map(q => q));
   }
 
   public LoadMore() {

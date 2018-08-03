@@ -1,6 +1,6 @@
 
 export class IUser {
- public Id: string;
+ public id: string;
  public FirstName: string;
  public LastName: string;
 }

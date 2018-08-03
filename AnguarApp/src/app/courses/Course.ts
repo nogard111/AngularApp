@@ -1,7 +1,7 @@
 import { ICourse } from './Course-interface';
 
 export class Course implements ICourse {
- public Id: string;
+ public id: string;
  public Title: string;
  public CreationTime: Date;
  public DurationTime: number;

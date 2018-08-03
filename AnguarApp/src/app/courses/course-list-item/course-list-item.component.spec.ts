@@ -31,7 +31,7 @@ describe('CourseListItemComponent', () => {
     component = fixture.componentInstance;
 
     item = {
-      Id: 'C2',
+      id: 'C2',
       Title: 'Course #2',
       DurationTime: 6,
       CreationTime: new Date('2018-01-13T14:00:00'),
@@ -50,7 +50,7 @@ describe('CourseListItemComponent', () => {
   it('raises the selected event when clicked', () => {
     const sevice = TestBed.get(CourseService);
     component.Delete();
-     expect(sevice.deleteId).toBe(item.Id);
+     expect(sevice.deleteId).toBe(item.id);
   });
 
   it('Display proper title', () => {

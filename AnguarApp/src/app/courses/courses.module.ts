@@ -12,6 +12,7 @@ import { OrderByDatePipe } from './order-by-date.pipe';
 import { CourseService } from './course.service';
 import { ICourseService } from './icourse.service';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -27,6 +28,6 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe, EditCourseComponent
   ],
   // providers: [ {provide: ICourseService, useClass: CourseService}]
-  providers: [ CourseService]
+  providers: [ CourseService, HttpClient]
 })
 export class CoursesModule { }

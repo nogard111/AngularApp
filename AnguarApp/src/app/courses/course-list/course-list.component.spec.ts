@@ -30,7 +30,7 @@ describe('CourseListComponent', () => {
   it('NgFor show 1 course', () => {
 
     const item: Course = {
-      Id: 'C2',
+      id: 'C2',
       Title: 'Course #2',
       DurationTime: 6,
       CreationTime: new Date('2018-01-13T14:00:00'),
@@ -48,7 +48,7 @@ describe('CourseListComponent', () => {
   it('NgFor work for 2 courses', () => {
 
     const item: Course = {
-      Id: 'C2',
+      id: 'C2',
       Title: 'Course #2',
       DurationTime: 6,
       CreationTime: new Date('2018-01-13T14:00:00'),

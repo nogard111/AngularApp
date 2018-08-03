@@ -1,70 +1,48 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { ICourse } from './Course-interface';
 import { ICourseService } from './icourse.service';
+import { HttpClient, HttpResponse, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { v4 as uuid } from 'uuid';
+import { HttpHeaders } from '@angular/common/http';
+import { Course } from './Course';
+
+const BASE_URL = 'http://localhost:3004/courses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService implements ICourseService {
-  public coursesItems: ICourse[] = [];
 
   @Output() ChangeEvent: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() {
+  constructor(private http: HttpClient) {
     console.log('service created');
-
-    this.coursesItems = [
-      {
-        Id: 'C1',
-        Title: 'Course #1',
-        DurationTime: 145,
-        CreationTime: new Date('2018-07-09T13:30:16'),
-        Description: 'Desc: Preparing for real life course. some more text and even more and more.',
-        TopRated: true
-      },
-      {
-        Id: 'C2',
-        Title: 'Course #2',
-        DurationTime: 120,
-        CreationTime: new Date('2018-07-19T14:00:00'),
-        Description: 'Desc: Preparing for real life course part 2',
-        TopRated: false
-      },
-      {
-        Id: 'C3',
-        Title: 'Course #3',
-        DurationTime: 30,
-        CreationTime: new Date('2018-02-22T14:00:00'),
-        Description: 'Desc: Preparing for real life course part 3',
-        TopRated: true
-      },
-
-    ];
   }
 
-  Getlist(): ICourse[] {
-    return this.coursesItems;
+  public Getlist(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${BASE_URL}`);
   }
   CreateCourse() {
 
   }
 
-  GetItemById(id: String): ICourse {
-    return this.coursesItems.find(q => q.Id === id);
+  GetItemById(id: String): Observable<ICourse> {
+    return this.http.get<Course>(`${BASE_URL}/${id}`);
   }
 
   UpdateItem(id: String, item: ICourse) {
-    const course = this.coursesItems.find(q => q.Id === id);
-    this.copyCourse(item, course);
+    this.http.put<ICourse>(`${BASE_URL}/${id}`, item).subscribe(() => this.ChangeEvent.emit());
   }
 
   AddItem(item: ICourse) {
-    this.coursesItems.push(item);
+    this.http.post<ICourse>(`${BASE_URL}`,  item).subscribe(() => this.ChangeEvent.emit());
   }
 
   private copyCourse(source: ICourse, destination: ICourse) {
     destination.Title = source.Title;
-    destination.Id = source.Id;
+    destination.id = source.id;
     destination.CreationTime = source.CreationTime;
     destination.DurationTime = source.DurationTime;
     destination.Description = source.Description;
@@ -73,8 +51,10 @@ export class CourseService implements ICourseService {
 
   RemoveItem(id: String) {
     console.log('Deleted id =' + id);
-    this.coursesItems.splice(this.coursesItems.findIndex((value: ICourse) => value.Id === id), 1);
-    this.ChangeEvent.emit();
+
+    this.http.delete<ICourse>(`${BASE_URL}/${id}`).subscribe(
+      () => this.ChangeEvent.emit()
+    );
   }
 
 }

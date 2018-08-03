@@ -18,13 +18,13 @@ import { ICourseService } from '../icourse.service';
 class TestHostComponent {
   public deletedId: string;
   public course: Course = {
-      Id: 'C5',
-      Title: 'Course #5',
-      DurationTime: 65,
-      CreationTime: new Date('2018-01-13T14:00:00'),
-      Description: 'Desc: Preparing for real life course part 5',
-      TopRated: true
-    };
+    id: 'C5',
+    Title: 'Course #5',
+    DurationTime: 65,
+    CreationTime: new Date('2018-01-13T14:00:00'),
+    Description: 'Desc: Preparing for real life course part 5',
+    TopRated: true
+  };
 
   public onDeleteEvent(id: string) {
     this.deletedId = id;
@@ -36,11 +36,11 @@ describe('CourseListItemComponentHost', () => {
   let component: TestHostComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestHostComponent, CourseListItemComponent,  DurationPipe, CourseBorderDirective ],
-      imports: [ FormsModule],
-      providers: [ {provide: ICourseService, useClass: CourseTestService}]
+      declarations: [TestHostComponent, CourseListItemComponent, DurationPipe, CourseBorderDirective],
+      imports: [FormsModule],
+      providers: [{ provide: ICourseService, useClass: CourseTestService }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -52,12 +52,12 @@ describe('CourseListItemComponentHost', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-/*
-  it('should rise DeleteEvent', () => {
-    fixture.detectChanges();
-    const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
-    deleteButton.triggerEventHandler('click', null);
-
-     expect(component.CourseService.deletedId).toEqual(component.course.Id);
-  });*/
+  /*
+    it('should rise DeleteEvent', () => {
+      fixture.detectChanges();
+      const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
+      deleteButton.triggerEventHandler('click', null);
+  
+       expect(component.CourseService.deletedId).toEqual(component.course.id);
+    });*/
 });
