@@ -7,8 +7,9 @@ import { catchError, retry } from 'rxjs/operators';
 import { v4 as uuid } from 'uuid';
 import { HttpHeaders } from '@angular/common/http';
 import { Course } from './Course';
+import { API_URL } from '../constants';
 
-const BASE_URL = 'http://localhost:3004/courses';
+const BASE_URL = API_URL + 'courses';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class CourseService implements ICourseService {
   }
 
   AddItem(item: ICourse) {
-    this.http.post<ICourse>(`${BASE_URL}`,  item).subscribe(() => this.ChangeEvent.emit());
+    this.http.post<ICourse>(`${BASE_URL}`, item).subscribe(() => this.ChangeEvent.emit());
   }
 
   private copyCourse(source: ICourse, destination: ICourse) {

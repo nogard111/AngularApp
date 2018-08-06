@@ -16,11 +16,12 @@ export class LoginPageComponent implements OnInit {
   UserPass = '';
 
   ngOnInit() {
+    this.authService.AuthenticationEvent.subscribe(() => this.router.navigate(['/courses']));
   }
 
   Login() {
     if (this.authService.logIn(this.UserName, this.UserPass)) {
-      this.router.navigate(['/courses']);
+
     }
   }
 }
