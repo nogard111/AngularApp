@@ -41,12 +41,12 @@ export class CourseService implements ICourseService {
   }
 
   private copyCourse(source: ICourse, destination: ICourse) {
-    destination.Title = source.Title;
+    destination.name = source.name;
     destination.id = source.id;
-    destination.CreationTime = source.CreationTime;
-    destination.DurationTime = source.DurationTime;
-    destination.Description = source.Description;
-    destination.TopRated = source.TopRated;
+    destination.creationTime = source.creationTime;
+    destination.durationTime = source.durationTime;
+    destination.description = source.description;
+    destination.isTopRated = source.isTopRated;
   }
 
   RemoveItem(id: String) {

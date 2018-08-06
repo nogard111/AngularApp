@@ -1,23 +1,23 @@
 <div class="alert alert-primary container courseItem" 
-appCourseBorder [date]='course.CreationTime' [ngClass]="{'top-Rated':course.TopRated}">
+appCourseBorder [date]='course.creationTime' [ngClass]="{'top-Rated':course.isTopRated}">
   <div class="row" >
     <div class="col-10">
       <div class="row">
         <div class="col">          
-          {{course.Title | uppercase}}
-          <div *ngIf='course.TopRated === true'>
+          {{course.name | uppercase}}
+          <div *ngIf='course.isTopRated === true'>
               <img width="50" alt="Angular Logo" src="/assets/images/Star.jpg"/>
           </div>
         </div>
         <div class="col">
-          {{course.DurationTime | duration}}
+          {{course.durationTime | duration}}
         </div>
         <div class="col-5">
-          {{course.CreationTime | date: 'dd.MM.yyyy'}}
+          {{course.creationTime | date: 'dd.MM.yyyy'}}
         </div>
       </div>
       <div>
-        {{course.Description}}
+        {{course.description}}
       </div>
     </div>
     <div class="col-2">

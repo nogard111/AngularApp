@@ -1,24 +1,24 @@
 <div>
   <p>Title:</p>
-  <input class='max-width' [(ngModel)]='course.Title'>
+  <input class='max-width' [(ngModel)]='course.name'>
   <p></p>
 
   <p>Description:</p>
-  <textarea class='max-width' [(ngModel)]='course.Description'></textarea>
+  <textarea class='max-width' [(ngModel)]='course.description'></textarea>
   <p></p>
 
   <p>Date:</p>
-  <input class='max-width' [(ngModel)]='course.CreationTime'>
+  <input class='max-width' [(ngModel)]='course.creationTime'>
   <p></p>
 
   <p>Duration:</p>
   <table>
     <tr>
       <th>
-        <input class='max-width200' [(ngModel)]='course.DurationTime'>
+        <input class='max-width200' [(ngModel)]='course.durationTime'>
       </th>
       <th>
-        <div>{{course.DurationTime| duration}}</div>
+        <div>{{course.durationTime| duration}}</div>
       </th>
     </tr>
   </table>

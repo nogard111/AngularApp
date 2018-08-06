@@ -27,7 +27,7 @@ export class EditCourseComponent implements OnInit {
           if (courseOrginal != null) {
             this.isUpdating = true;
             this.course = Object.assign({}, courseOrginal);
-            this.breadCrumbService.CourseName = this.course.Title;
+            this.breadCrumbService.CourseName = this.course.name;
           }
         }, () =>
             this.initAsNew()
@@ -39,7 +39,7 @@ export class EditCourseComponent implements OnInit {
 
   private initAsNew() {
     this.isUpdating = false;
-    this.course = { id: uuid(), Title: '', CreationTime: new Date, Description: '', TopRated: false, DurationTime: 0 };
+    this.course = { id: uuid(), name: '', creationTime: new Date, description: '', isTopRated: false, durationTime: 0 };
     this.breadCrumbService.CourseName = 'new';
   }
 
