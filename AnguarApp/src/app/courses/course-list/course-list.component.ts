@@ -32,7 +32,11 @@ export class CourseListComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit() {
+    this.pageIndex = 0;
+    this.length = 0;
+
     this.subscription = this.courseService.ChangeEvent.subscribe(() => {
+      this.pageIndex = 0; // go to first tabe on delete/ search
       this.getData();
     });
     this.getData();
@@ -59,7 +63,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
       response => {
         this.coursesItems = response.data;
         this.length = response.length;
-        // this.pageIndex = response.pageIndex;
+        this.pageIndex = start / count;
         // this.pageSize = response.pageSize;
       },
       error => {
