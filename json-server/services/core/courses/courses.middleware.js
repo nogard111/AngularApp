@@ -12,10 +12,10 @@ module.exports = (server) => {
 			sort = query.sort,
 			queryStr = query.query,
 			courses = server.db.getState().courses;
-			const lenAll = courses.length;
 			if (!!query.textFragment) {
 				courses = courses.filter((course) => course.name.concat(course.description).toUpperCase().indexOf(query.textFragment.toUpperCase()) >= 0);
 			}
+			const lenAll = courses.length;
 
 		if (courses.length < to || !to) {
 			to = courses.length;

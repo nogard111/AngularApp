@@ -9,10 +9,6 @@ import { Course } from '../Course';
   styleUrls: ['./course-page.component.css']
 })
 export class CoursePageComponent implements OnInit, OnDestroy {
-
-  public searchText = '';
-  public subscription: any;
-
   constructor(public courseService: CourseService) {
   }
 
@@ -30,6 +26,6 @@ export class CoursePageComponent implements OnInit, OnDestroy {
   }
 
   public onSearchEvent(text: string) {
-    this.searchText = text;
+    this.courseService.SetFilterText(text);
   }
 }

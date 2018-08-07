@@ -25,7 +25,6 @@ export class CourseListComponent implements OnInit, OnDestroy {
   public length = 0;
 
   public subscription: any;
-  @Input() public searchText: string;
 
 
   constructor(private courseService: CourseService,

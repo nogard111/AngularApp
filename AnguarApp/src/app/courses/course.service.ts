@@ -16,8 +16,8 @@ const BASE_URL = API_URL + 'courses';
   providedIn: 'root'
 })
 export class CourseService implements ICourseService {
-
   @Output() ChangeEvent: EventEmitter<void> = new EventEmitter<void>();
+  private filterWord = '';
 
   constructor(private http: HttpClient) {
     console.log('service created');
@@ -28,11 +28,19 @@ export class CourseService implements ICourseService {
   }
 
   public GetListPart(start: number, count: number): Observable<ServerCoursesResponse> {
-    return this.http.get<ServerCoursesResponse>(`${BASE_URL}?start=` + start + '&count=' + count);
+    return this.http.get<ServerCoursesResponse>(`${BASE_URL}?start=` + start + '&count=' + count +
+    // (this.filterWord ? '&query=\"' + this.filterWord + '\"' : ''));
+    (this.filterWord ? '&textFragment=' + this.filterWord : ''));
   }
 
   CreateCourse() {
 
+  }
+
+
+  SetFilterText(filterWord: string) {
+    this.filterWord = filterWord;
+    this.ChangeEvent.emit();
   }
 
   GetItemById(id: String): Observable<ICourse> {
