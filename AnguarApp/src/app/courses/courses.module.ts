@@ -13,21 +13,25 @@ import { CourseService } from './course.service';
 import { ICourseService } from './icourse.service';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { HttpClient } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   exports: [
     CourseListComponent, CourseListItemComponent,
     ToolboxComponent, CoursePageComponent, EditCourseComponent
   ],
-  declarations: [   CourseListComponent,
-    CourseListItemComponent, ToolboxComponent,  CoursePageComponent,
+  declarations: [CourseListComponent,
+    CourseListItemComponent, ToolboxComponent, CoursePageComponent,
     CourseBorderDirective, DurationPipe, FilterByTitlePipe, OrderByDatePipe, EditCourseComponent
   ],
   // providers: [ {provide: ICourseService, useClass: CourseService}]
-  providers: [ CourseService, HttpClient]
+  providers: [CourseService, HttpClient]
 })
 export class CoursesModule { }

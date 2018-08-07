@@ -12,7 +12,7 @@ module.exports = (server) => {
 			sort = query.sort,
 			queryStr = query.query,
 			courses = server.db.getState().courses;
-		
+			const lenAll = courses.length;
 			if (!!query.textFragment) {
 				courses = courses.filter((course) => course.name.concat(course.description).toUpperCase().indexOf(query.textFragment.toUpperCase()) >= 0);
 			}
@@ -22,7 +22,7 @@ module.exports = (server) => {
 		}
 		courses = courses.slice(from, to);
 		
-		res.json(courses);
+		res.json({'data':courses,'length':lenAll});
 	});
 	
 	return router;

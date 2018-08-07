@@ -19,10 +19,42 @@
       {
         "id": "C3",
         "name": "Course #3",
-        "durationTime": 30,
+        "durationTime": 40,
         "creationTime": "2018-02-22T14:00:00",
-        "description": "Desc: Preparing for real life course part 3",
+        "description": "Desc: dfh",
         "isTopRated": true
+      },
+      {
+        "id": "C4",
+        "name": "Course #4",
+        "durationTime": 220,
+        "creationTime": "2018-07-19T14:00:00",
+        "description": "Desc: 4g",
+        "isTopRated": false
+      },
+      {
+        "id": "C5",
+        "name": "Course #5",
+        "durationTime": 50,
+        "creationTime": "2018-02-22T14:00:00",
+        "description": "Desc: g34a",
+        "isTopRated": true
+      },
+      {
+        "id": "C6",
+        "name": "Course #6",
+        "durationTime": 120,
+        "creationTime": "2018-07-19T14:00:00",
+        "description": "Desc: atgv4",
+        "isTopRated": false
+      },
+      {
+        "id": "C7",
+        "name": "Course #7",
+        "durationTime": 40,
+        "creationTime": "2018-02-22T14:00:00",
+        "description": "Desc: 6bteryyvs",
+        "isTopRated": false
       }
   ]
 }

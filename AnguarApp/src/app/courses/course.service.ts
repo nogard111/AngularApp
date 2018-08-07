@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { HttpHeaders } from '@angular/common/http';
 import { Course } from './Course';
 import { API_URL } from '../constants';
+import { ServerCoursesResponse } from './server-courses-response';
 
 const BASE_URL = API_URL + 'courses';
 
@@ -22,9 +23,14 @@ export class CourseService implements ICourseService {
     console.log('service created');
   }
 
-  public Getlist(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${BASE_URL}`);
+  public Getlist(): Observable<ServerCoursesResponse> {
+    return this.http.get<ServerCoursesResponse>(`${BASE_URL}`);
   }
+
+  public GetListPart(start: number, count: number): Observable<ServerCoursesResponse> {
+    return this.http.get<ServerCoursesResponse>(`${BASE_URL}?start=` + start + '&count=' + count);
+  }
+
   CreateCourse() {
 
   }

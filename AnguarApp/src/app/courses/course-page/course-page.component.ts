@@ -8,46 +8,27 @@ import { Course } from '../Course';
   templateUrl: './course-page.component.html',
   styleUrls: ['./course-page.component.css']
 })
-export class CoursePageComponent implements OnInit, OnDestroy, OnChanges {
+export class CoursePageComponent implements OnInit, OnDestroy {
 
-  public coursesItems: ICourse[] = [];
   public searchText = '';
   public subscription: any;
 
   constructor(public courseService: CourseService) {
-    this.update();
   }
 
   ngOnInit() {
     console.log('OnInit');
-    this.subscription = this.courseService.ChangeEvent.subscribe(() => { this.update(); });
   }
   ngOnDestroy(): void {
     console.log('OnDestroy');
-    this.subscription.unsubscribe();
   }
 
-  ngOnChanges(): void {
-    this.update();
-  }
 
-  public update() {
-    this.courseService.Getlist().subscribe((data) => this.coursesItems = data.map(q => q));
-  }
 
   public LoadMore() {
     console.log('LoadMore');
   }
 
-  GetCourseslist(): ICourse[] {
-    this.update();
-    return this.coursesItems;
-  }
-
-  getCourse(): ICourse {
-    // return  this.courseService.GetItemById(this.courseService.editCourse);
-    return new Course(); // Object.assign({}, this.courseService.GetItemById(this.courseService.editCourse));
-  }
   public onSearchEvent(text: string) {
     this.searchText = text;
   }
