@@ -13,7 +13,7 @@ export class ToolboxComponent implements OnInit {
   @Output() public SearchEvent = new EventEmitter<string>();
 
   constructor(private courseService: CourseService, private activeRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) { this.SearchText = courseService.GetFilterText(); }
 
   public AddCourse() {
     console.log('Course added ');

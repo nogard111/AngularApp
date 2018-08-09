@@ -11,7 +11,7 @@ import { BreadCrumbHelperService } from '../../core/bread-crumb-helper.service';
   styleUrls: ['./edit-course.component.css']
 })
 export class EditCourseComponent implements OnInit {
-  public course: ICourse;
+  public course: ICourse = null;
   public isUpdating: boolean;
   constructor(public courseService: CourseService, private router: Router,
     private route: ActivatedRoute, private breadCrumbService: BreadCrumbHelperService) { }

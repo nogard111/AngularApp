@@ -29,8 +29,7 @@ export class CourseService implements ICourseService {
 
   public GetListPart(start: number, count: number): Observable<ServerCoursesResponse> {
     return this.http.get<ServerCoursesResponse>(`${BASE_URL}?start=` + start + '&count=' + count +
-    // (this.filterWord ? '&query=\"' + this.filterWord + '\"' : ''));
-    (this.filterWord ? '&textFragment=' + this.filterWord : ''));
+      (this.filterWord ? '&textFragment=' + this.filterWord : ''));
   }
 
   CreateCourse() {
@@ -41,6 +40,10 @@ export class CourseService implements ICourseService {
   SetFilterText(filterWord: string) {
     this.filterWord = filterWord;
     this.ChangeEvent.emit();
+  }
+
+  GetFilterText(): string {
+    return this.filterWord;
   }
 
   GetItemById(id: String): Observable<ICourse> {
