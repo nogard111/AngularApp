@@ -19,7 +19,7 @@ export class CoursePageComponent implements OnInit, OnDestroy {
     this.textChange.pipe(debounceTime(400)).subscribe(
       (text) => {
         if (text === '' || text.length > 2) { this.courseService.SetFilterText(text); }
-        console.log((new Date).toString()  );
+        // console.log((new Date).toString()  );
       }
     );
   }

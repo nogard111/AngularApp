@@ -1,6 +1,11 @@
 <!--
 <mat-divider></mat-divider>
 -->
+
+<div *ngIf='loaderService.loading === true' class="spinMe">
+    <mat-spinner style='top: 50%;right: 50%;position: absolute'></mat-spinner>
+</div>
+
 <div class="container">
     <app-header></app-header>
     <app-breadcrumbs></app-breadcrumbs>

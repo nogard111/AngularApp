@@ -10,6 +10,7 @@ import {
 import { ICourse } from '../Course-interface';
 import { CourseService } from '../course.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { LoaderService } from '../../core/loader.service';
 
 @Component({
   selector: 'app-course-list',
@@ -29,7 +30,8 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
   constructor(private courseService: CourseService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public loaderService: LoaderService) { }
 
   ngOnInit() {
     this.pageIndex = 0;
@@ -59,15 +61,18 @@ export class CourseListComponent implements OnInit, OnDestroy {
     this.update(this.pageIndex * this.pageSize, this.pageSize);
   }
   public update(start: number, count: number) {
+    this.loaderService.loading = true;
     this.courseService.GetListPart(start, count).subscribe(
       response => {
         this.coursesItems = response.data;
         this.length = response.length;
         this.pageIndex = start / count;
         // this.pageSize = response.pageSize;
+        this.loaderService.loading = false;
       },
       error => {
         console.log(error);
+        this.loaderService.loading = false;
       }
     );
   }

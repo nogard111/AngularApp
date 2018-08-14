@@ -11,13 +11,16 @@ import { AuthorizationService } from '../user/authorization.service';
 import { CanActivateAuthenticateGuard } from './can-activate-authenticate-guard';
 import { BreadCrumbHelperService } from './bread-crumb-helper.service';
 import { SnackBarService } from './snack-bar.service';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { LoaderService } from './loader.service';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    UserModule
+    UserModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     HeaderComponent, FooterComponent, BreadcrumbsComponent
@@ -25,7 +28,7 @@ import { SnackBarService } from './snack-bar.service';
   declarations: [HeaderComponent, FooterComponent, FakelogoComponent,
     BreadcrumbsComponent
   ],
-  providers: [AuthorizationService, CanActivateAuthenticateGuard, BreadCrumbHelperService, SnackBarService]
+  providers: [AuthorizationService, CanActivateAuthenticateGuard, BreadCrumbHelperService, SnackBarService, LoaderService]
 
 })
 export class CoreModule { }

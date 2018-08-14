@@ -9,6 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Course } from './Course';
 import { API_URL } from '../constants';
 import { ServerCoursesResponse } from './server-courses-response';
+import { LoaderService } from '../core/loader.service';
 
 const BASE_URL = API_URL + 'courses';
 
@@ -19,7 +20,7 @@ export class CourseService implements ICourseService {
   @Output() ChangeEvent: EventEmitter<void> = new EventEmitter<void>();
   private filterWord = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public loaderService: LoaderService) {
     console.log('service created');
   }
 
@@ -51,11 +52,19 @@ export class CourseService implements ICourseService {
   }
 
   UpdateItem(id: String, item: ICourse) {
-    this.http.put<ICourse>(`${BASE_URL}/${id}`, item).subscribe(() => this.ChangeEvent.emit());
+    this.loaderService.loading = true;
+    this.http.put<ICourse>(`${BASE_URL}/${id}`, item).subscribe(
+      () => { this.ChangeEvent.emit(); this.loaderService.loading = false; },
+      () => this.loaderService.loading = false);
   }
 
   AddItem(item: ICourse) {
-    this.http.post<ICourse>(`${BASE_URL}`, item).subscribe(() => this.ChangeEvent.emit());
+    this.loaderService.loading = true;
+    setTimeout(() => {
+      this.http.post<ICourse>(`${BASE_URL}`, item).subscribe(
+        () => { this.ChangeEvent.emit(); this.loaderService.loading = false; },
+        () => this.loaderService.loading = false);
+    }, 2000);
   }
 
   private copyCourse(source: ICourse, destination: ICourse) {
@@ -68,11 +77,14 @@ export class CourseService implements ICourseService {
   }
 
   RemoveItem(id: String) {
+    this.loaderService.loading = true;
     console.log('Deleted id =' + id);
 
-    this.http.delete<ICourse>(`${BASE_URL}/${id}`).subscribe(
-      () => this.ChangeEvent.emit()
-    );
+    setTimeout(() => {
+      this.http.delete<ICourse>(`${BASE_URL}/${id}`).subscribe(
+        () => { this.ChangeEvent.emit(); this.loaderService.loading = false; },
+        () => this.loaderService.loading = false);
+    }, 2000);
   }
 
 }

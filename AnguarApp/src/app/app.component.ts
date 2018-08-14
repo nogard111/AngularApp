@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthorizationService } from './user/authorization.service';
+import { LoaderService } from './core/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthorizationService } from './user/authorization.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(public authService: AuthorizationService) {
+  constructor(public authService: AuthorizationService, public loaderService: LoaderService) {
 
   }
 }
