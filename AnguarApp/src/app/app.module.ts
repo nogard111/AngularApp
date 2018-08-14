@@ -14,7 +14,7 @@ import { CanActivateAuthenticateGuard } from './core/can-activate-authenticate-g
 import { LoginPageComponent } from './user/login-page/login-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MatSnackBar,MatSnackBarModule } from '@angular/material';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -51,6 +51,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     MatPaginatorModule,
+    MatSnackBarModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only

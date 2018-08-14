@@ -1,6 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IUser } from './User-interface';
 import { API_URL } from '../constants';
 
@@ -25,7 +25,9 @@ export class AuthorizationService {
     }
   }
 
-  logIn(name: string, pass: string) {// : Observable<boolean> {
+  logIn(name: string, pass: string): Observable<boolean> {
+
+    const login: Subject<boolean> = new Subject<boolean>();
 
     this.http.post<any>(`${BASE_URL}/login`, JSON.stringify({ login: name, password: pass })).subscribe
       (
@@ -46,18 +48,23 @@ export class AuthorizationService {
               JSON.stringify({ user: this.logedUser, token: this.token }));
 
             this.AuthenticationEvent.emit();
+            login.next(true);
+            login.complete();
             return true;
           },
           (error) => {
             console.log('get user error' + error);
+            login.error(error.error);
           }
           );
       },
       (error) => {
         console.log('Log in error' + error);
+        login.error(error.error);
       }
       );
 
+      return login;
   }
 
   logOut(): boolean {

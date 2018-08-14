@@ -2,7 +2,7 @@
   "courses": [
      {
         "id": "C1",
-        "name": "Course #1",
+        "name": "Life #1",
         "durationTime": 145,
         "creationTime": "2018-07-09T13:30:16",
         "description": "Desc: Preparing for real life course. some more text and even more and more.",
@@ -10,7 +10,7 @@
       },
       {
         "id": "C2",
-        "name": "Course #2",
+        "name": "Life #2",
         "durationTime": 120,
         "creationTime": "2018-07-19T14:00:00",
         "description": "Desc: Preparing for real life course part 2",
@@ -18,7 +18,7 @@
       },
       {
         "id": "C3",
-        "name": "Course #3",
+        "name": "CourseLife #3",
         "durationTime": 40,
         "creationTime": "2018-02-22T14:00:00",
         "description": "Desc: dfh",

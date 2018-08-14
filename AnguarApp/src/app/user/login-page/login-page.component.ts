@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
 import { IUser } from '../User-interface';
 import { Router } from '@angular/router';
+import { SnackBarService } from '../../core/snack-bar.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,18 +11,20 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private authService: AuthorizationService, private router: Router) { }
+  constructor(private authService: AuthorizationService,
+    private router: Router,
+    private snackBarService: SnackBarService) { }
 
   UserName = '';
   UserPass = '';
 
   ngOnInit() {
-    this.authService.AuthenticationEvent.subscribe(() => this.router.navigate(['/courses']));
   }
 
   Login() {
-    if (this.authService.logIn(this.UserName, this.UserPass)) {
-
-    }
+    this.authService.logIn(this.UserName, this.UserPass)
+      .subscribe(
+        () => this.router.navigate(['/courses']),
+        (err) => this.snackBarService.showError(err));
   }
 }

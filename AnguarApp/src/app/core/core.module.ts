@@ -10,6 +10,7 @@ import { UserModule } from '../user/user.module';
 import { AuthorizationService } from '../user/authorization.service';
 import { CanActivateAuthenticateGuard } from './can-activate-authenticate-guard';
 import { BreadCrumbHelperService } from './bread-crumb-helper.service';
+import { SnackBarService } from './snack-bar.service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { BreadCrumbHelperService } from './bread-crumb-helper.service';
   declarations: [HeaderComponent, FooterComponent, FakelogoComponent,
     BreadcrumbsComponent
   ],
-  providers: [AuthorizationService, CanActivateAuthenticateGuard, BreadCrumbHelperService]
+  providers: [AuthorizationService, CanActivateAuthenticateGuard, BreadCrumbHelperService, SnackBarService]
 
 })
 export class CoreModule { }
