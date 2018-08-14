@@ -20,10 +20,10 @@ export class ToolboxComponent implements OnInit {
     this.router.navigate(['/courses/new']);
   }
 
-  public Search() {
-    console.log('Search ' + this.SearchText);
+  public onSearchChange(value: string) {
+    // console.log('Search ' + this.SearchText);
     if (this.SearchEvent != null) {
-      this.SearchEvent.emit(this.SearchText);
+      this.SearchEvent.emit(value);
     }
   }
 
