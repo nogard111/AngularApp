@@ -14,7 +14,9 @@ import { CanActivateAuthenticateGuard } from './core/can-activate-authenticate-g
 import { LoginPageComponent } from './user/login-page/login-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
+import { StoreModule } from '@ngrx/store';
 import { MatPaginatorModule, MatSnackBar, MatSnackBarModule, MatSpinner, MatProgressSpinnerModule } from '@angular/material';
+import { logedUserReducer } from './user/loged-user.reducer';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -56,6 +58,12 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
+    ),
+    StoreModule.forRoot(
+      {
+        logedUser: logedUserReducer,
+        // courses: coursesReducer
+      }
     )
   ],
   providers: [

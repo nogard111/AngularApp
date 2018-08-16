@@ -3,6 +3,9 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IUser } from './User-interface';
 import { API_URL } from '../constants';
+import { Store } from '../../../node_modules/@ngrx/store';
+import { UserStore } from './user-store';
+import { LogOutAction, LogInAction } from '../core/actions/authorizationAction';
 
 const BASE_URL = API_URL + 'auth';
 
@@ -10,17 +13,18 @@ const BASE_URL = API_URL + 'auth';
   providedIn: 'root'
 })
 export class AuthorizationService {
-  logedUser: BehaviorSubject <IUser> = new BehaviorSubject <IUser>(null);
+  logedUser: BehaviorSubject<IUser> = new BehaviorSubject<IUser>(null);
   logedUserStorageKey = 'LogedUser';
   token: any = null;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public store: Store<UserStore>) {
     const data = localStorage.getItem(this.logedUserStorageKey);
 
     if (data != null) {
       const obj = JSON.parse(data);
       this.logedUser.next(obj.user);
       this.token = obj.token;
+      this.store.dispatch(new LogInAction(obj.user));
     }
   }
 
@@ -43,7 +47,7 @@ export class AuthorizationService {
               id: userinfo.id,
               LastName: userinfo.name.last
             };
-            this.logedUser.next( user);
+            this.store.dispatch(new LogInAction(user));
             localStorage.setItem(this.logedUserStorageKey,
               JSON.stringify({ user: user, token: this.token }));
 
@@ -63,11 +67,12 @@ export class AuthorizationService {
       }
       );
 
-      return login;
+    return login;
   }
 
   logOut(): boolean {
-    this.logedUser.next( null);
+    this.store.dispatch(new LogOutAction());
+
     this.token = null;
     console.log('Log out successfully');
     localStorage.removeItem(this.logedUserStorageKey);

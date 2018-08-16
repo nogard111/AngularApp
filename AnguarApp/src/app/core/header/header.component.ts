@@ -1,8 +1,10 @@
-import { Component, OnInit , OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthorizationService } from '../../user/authorization.service';
 import { Router } from '@angular/router';
 import { IUser } from '../../user/User-interface';
-import { Subscription } from '../../../../node_modules/rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { UserStore } from '../../user/user-store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public emptyName = '-';
   public UserName = '-';
   public buttonText = '-';
+
+  logedUser: Observable<IUser>;
   /*
    * LogOut
    */
@@ -24,10 +28,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  constructor(private authService: AuthorizationService, private router: Router) {
+
+  constructor(private authService: AuthorizationService, private router: Router, public store: Store<UserStore>) {
+    this.logedUser = store.select('logedUser');
   }
   ngOnInit() {
-    this.userInfoSubscription = this.authService.logedUser.subscribe((user) => this.refresh(user));
+    this.userInfoSubscription = this.logedUser.subscribe((user) => this.refresh(user));
   }
   ngOnDestroy(): void {
     this.userInfoSubscription.unsubscribe();
