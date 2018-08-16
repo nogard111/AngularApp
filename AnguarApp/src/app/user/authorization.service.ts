@@ -1,6 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IUser } from './User-interface';
 import { API_URL } from '../constants';
 
@@ -10,8 +10,7 @@ const BASE_URL = API_URL + 'auth';
   providedIn: 'root'
 })
 export class AuthorizationService {
-  @Output() AuthenticationEvent: EventEmitter<IUser> = new EventEmitter<IUser>();
-  logedUser: IUser = null;
+  logedUser: BehaviorSubject <IUser> = new BehaviorSubject <IUser>(null);
   logedUserStorageKey = 'LogedUser';
   token: any = null;
 
@@ -20,7 +19,7 @@ export class AuthorizationService {
 
     if (data != null) {
       const obj = JSON.parse(data);
-      this.logedUser = obj.user;
+      this.logedUser.next(obj.user);
       this.token = obj.token;
     }
   }
@@ -39,15 +38,15 @@ export class AuthorizationService {
         this.http.post<any>(`${BASE_URL}/userinfo`, '').subscribe
           (
           (userinfo) => {
-            this.logedUser = {
+            const user = {
               FirstName: userinfo.name.first,
               id: userinfo.id,
               LastName: userinfo.name.last
             };
+            this.logedUser.next( user);
             localStorage.setItem(this.logedUserStorageKey,
-              JSON.stringify({ user: this.logedUser, token: this.token }));
+              JSON.stringify({ user: user, token: this.token }));
 
-            this.AuthenticationEvent.emit();
             login.next(true);
             login.complete();
             return true;
@@ -68,17 +67,16 @@ export class AuthorizationService {
   }
 
   logOut(): boolean {
-    this.logedUser = null;
+    this.logedUser.next( null);
     this.token = null;
     console.log('Log out successfully');
     localStorage.removeItem(this.logedUserStorageKey);
-    this.AuthenticationEvent.emit();
     return true;
   }
   IsAuthenticated(): boolean {
     return this.token != null;
   }
-  getUserInfo(): IUser {
+  getUserInfo(): Observable<IUser> {
     return this.logedUser;
   }
 }

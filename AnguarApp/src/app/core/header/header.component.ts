@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy} from '@angular/core';
 import { AuthorizationService } from '../../user/authorization.service';
 import { Router } from '@angular/router';
+import { IUser } from '../../user/User-interface';
+import { Subscription } from '../../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+
+  private userInfoSubscription: Subscription;
 
   public emptyName = '-';
   public UserName = '-';
@@ -21,20 +25,20 @@ export class HeaderComponent implements OnInit {
   }
 
   constructor(private authService: AuthorizationService, private router: Router) {
-    this.refresh();
   }
-
   ngOnInit() {
-    this.authService.AuthenticationEvent.subscribe(
-      () => { this.refresh(); });
+    this.userInfoSubscription = this.authService.logedUser.subscribe((user) => this.refresh(user));
+  }
+  ngOnDestroy(): void {
+    this.userInfoSubscription.unsubscribe();
   }
 
-  refresh() {
-    if (this.authService == null ||  this.authService.logedUser == null) {
+  refresh(logedUser: IUser) {
+    if (logedUser == null) {
       this.UserName = this.emptyName;
       this.buttonText = 'Login';
     } else {
-      this.UserName = this.authService.logedUser.FirstName;
+      this.UserName = logedUser.FirstName;
       this.buttonText = 'Logout';
     }
   }
