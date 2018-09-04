@@ -1,25 +1,52 @@
-<div>
-  <ng-container *ngIf='course!=null'>
+<ng-container *ngIf='courseForm!=null'>
+  <form [formGroup]='courseForm'>
     <p>Title:</p>
-    <input class='max-width' [(ngModel)]='course.name'>
+    <div *ngIf="controls.name.invalid && (controls.name.dirty || controls.name.touched)" class="alert alert-danger">
+
+      <div *ngIf="controls.name.errors.required">
+        field is required.
+      </div>
+      <div *ngIf="controls.name.errors.maxlength">
+        field must be max 50 characters long.
+      </div>
+    </div>
+
+    <input class='max-width' formControlName="name">
     <p></p>
 
     <p>Description:</p>
-    <textarea class='max-width' [(ngModel)]='course.description'></textarea>
+
+    <div *ngIf="controls.description.invalid && (controls.description.dirty || controls.description.touched)" class="alert alert-danger">
+      <div *ngIf="controls.description.errors.required">
+        field is required.
+      </div>
+      <div *ngIf="controls.description.errors.maxlength">
+        field must be max 500 characters long.
+      </div>
+    </div>
+    <textarea class='max-width' formControlName='description'></textarea>
     <p></p>
 
     <p>Date:</p>
-    <input class='max-width' [(ngModel)]='course.creationTime'>
+    <input class='max-width' formControlName='creationTime'>
     <p></p>
 
     <p>Duration:</p>
+    <div *ngIf="controls.durationTime.invalid && (controls.durationTime.dirty || controls.durationTime.touched)" class="alert alert-danger">
+      <div *ngIf="controls.durationTime.errors.required">
+        field is required.
+      </div>
+      <div *ngIf="controls.durationTime.errors.notValidInteger">
+        field must be integer.
+      </div>
+    </div>
     <table>
       <tr>
         <th>
-          <input class='max-width200' [(ngModel)]='course.durationTime'>
+          <input class='max-width200' formControlName='durationTime'>
         </th>
         <th>
-          <div>{{course.durationTime| duration}}</div>
+          <div>{{controls.durationTime.value| duration}}</div>
         </th>
       </tr>
     </table>
@@ -28,7 +55,7 @@
     <p>Authors:</p>
     <input class='max-width'>
 
-    <button type="button" item-width="100" class="btn btn-success btn-block" (click)="save()">Save</button>
-  </ng-container>
-  <button type="button" item-width="100" class="btn delete-button btn-danger btn-block" (click)="cancel()">Cancel</button>
-</div>
+    <button type="button" [disabled]='canSave()' item-width="100" class="btn btn-success btn-block" (click)="save()">Save</button>
+  </form>
+</ng-container>
+<button type="button" item-width="100" class="btn delete-button btn-danger btn-block" (click)="cancel()">Cancel</button>
