@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -67,7 +67,8 @@ const appRoutes: Routes = [
     )
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {provide: LOCALE_ID, useValue: 'pl'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

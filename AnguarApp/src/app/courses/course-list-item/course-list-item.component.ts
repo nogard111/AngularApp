@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ICourse } from '../Course-interface';
 
+import localeDe from '@angular/common/locales/de';
+import localePl from '@angular/common/locales/pl';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-course-list-item',
@@ -14,7 +17,10 @@ export class CourseListItemComponent implements OnInit {
   @Output() public DeleteEvent = new EventEmitter<string>();
   @Output() public EditEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {
+    registerLocaleData(localeDe);
+    registerLocaleData(localePl);
+   }
 
   ngOnInit() {
   }
